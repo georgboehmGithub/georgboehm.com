@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Georg Boehm</title>
+        <link href="assets/css/stylesheet.css" type="text/css" rel="stylesheet" />
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+</head>
+<div class="container">
+    <div id="wrapper">
+        <header id="header">
+            <img id="sports-img" src="assets/img/runner.png">
+            <h1>Sports</h1>
+            <h2>Exercising and competition in sport events have always been a must for me. Check out some of my recent achievements!</h2>
+        </header>
+        <div id="runningPlot" class="plot"></div>
+    </div>
+</div>
+<script>
+	PLOT = document.getElementById('runningPlot');
+    var traceHalf = {
+        x: ['2022-07-01','2022-09-02','2022-09-04'],
+	    y: [124, 129, 150],
+        mode: "lines+markers",
+        name: "Half marathon",
+        hovertemplate: '<i>Time</i>: %{y} minutes' + '<br>' +
+                        '<b>Date and Location: %{text}</b>' + "<br>",
+        text: ['01/07/22, Munich', '02/09/22, Pohang', '04/09/22, Pohang']
+    };
+    /*var traceFull = {
+        x: [1],
+	    y: [360],
+        mode: "markers",
+        name: "Full Marathon"
+    };
+    */
+var data = [ traceHalf ];
+var layout = {
+    title:'(Half-)Marathon developments overtime',
+    xaxis: {dtick: 30 * 24 * 60 * 60 * 1000, title:"Attempt"},
+    yaxis: {title:"Time in Minutes", range: [60, 160], dtick: 20}
+};
+	Plotly.newPlot(PLOT, data, layout);
+</script>
