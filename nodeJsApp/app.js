@@ -1,28 +1,9 @@
-const http = require('http')
-const fs = require('fs')
+var express = require("express");
+var app = express();
 const port = 3000
+const path = require('path')
+app.use(express.static('public'))
 
-const server = http.createServer(function(req,res) {
-    res.writeHead(200, {'Content-Type':'text/html'})
-    
-fs.readFile('/Users/georg/Desktop/georgboehm.com/georgboehm.com/index.html', 
-function(error, data){
-        if(error){
-            res.writeHead(404)
-            res.write('Error: File not found')
-        }else{
-            res.write(data)
-        }
-        res.end()
-    })
-
-})
-
-server.listen(port, function(error) {
-    if (error) {
-        console.log('An error has occured', error)
-
-    } else {
-        console.log('Server is running on port ' + port)
-    }
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`)
 })
