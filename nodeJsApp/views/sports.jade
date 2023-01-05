@@ -1,0 +1,19 @@
+doctype html
+script(src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js')
+script(src='../public/controllers/events.js')
+// TODO
+
+html
+  head
+    title = "Sports Page"
+  body
+    h1 This is the sports page
+    p Select Running Category:
+    select#dropdown
+        option(value='5k') 5k
+        option(value='10k') 10k
+        option(value='Half') Half Marathon
+        option(value='Full') Full Marathon
+    canvas#myChart
+    script.
+        dropDownEventHandler()
