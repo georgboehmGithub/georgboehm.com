@@ -1,4 +1,5 @@
 // Application
+
 const express = require('express')
 const app = express()
 var path = require('path');
@@ -17,27 +18,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
-});
+// const liveReloadServer = livereload.createServer();
+// liveReloadServer.server.once("connection", () => {
+//   setTimeout(() => {
+//     liveReloadServer.refresh("/");
+//   }, 100);
+// });
 
-app.use(connectLiveReload());
+// app.use(connectLiveReload());
 
 // routers
 var sportsRouter = require('./routes/sports');
 app.use('/sports', sportsRouter);
 
 // controllers
-// TODO
-app.get('/public/controllers/events.js', function(req, res) { //TODO
+app.get('/public/controllers/events.js', function(req, res) {
   res.type('text/javascript');
-  res.sendFile('public/controllers/events.js', { root: '/Users/georg/Desktop/Projects/georgboehm.com/georgboehm.com/nodeJsApp/' });
+  res.sendFile(__dirname + '/public/controllers/events.js');
 });
 
-// // view engine setup
+// styles
+app.get('*stylesheet.css', function(req, res) {
+  res.type('text/css');
+  res.sendFile(__dirname + "/public/stylesheets/stylesheet.css");
+});
+
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
