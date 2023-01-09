@@ -48,8 +48,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // port
-app.listen(process.env.port || 3001);
-console.log('Running at Port 3001');
+app.listen(process.env.port || 3000);
+console.log('Running at Port 3000');
 
 // export router
 module.exports = router;
